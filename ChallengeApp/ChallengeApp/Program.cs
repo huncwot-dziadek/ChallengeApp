@@ -1,21 +1,47 @@
 ﻿using System;
+using System.Globalization;
 
-string name = "Anna";
-char sex = 'K';
-int age = 19;
+List<string> Grupa = new List<string>();
+Grupa.Add("Zenon"); Grupa.Add("Bruno"); Grupa.Add("Bruno"); Grupa.Add("Klaudia");
+Grupa.Add("Wanda"); Grupa.Add("Klaudia"); Grupa.Add("Zenon"); Grupa.Add("Mietek");
+Grupa.Add("Ananiasz"); Grupa.Add("Klaudia"); Grupa.Add("Wanda"); Grupa.Add("Zenon");
+Grupa.Add("Mietek"); Grupa.Add("Ananiasz"); Grupa.Add("Bruno"); Grupa.Add("Zenon");
+Grupa.Add("Klaudia"); Grupa.Add("Klaudia"); Grupa.Add("Mietek"); Grupa.Add("Mietek");
 
-if(sex == 'M' && age < 18)
+List<int> ileRazy = new List<int>();
+
+int k = 0;  int n = 0;
+
+for (int j = 0; j < Grupa.Count - 1; j++)
 {
-    Console.WriteLine("Niepełnoletni mężczyzna");
+    for (var i = Grupa.Count - 1; i >= n + 1; i--)
+    {
+        if (Grupa[j] == Grupa[i])
+        {
+            Grupa.RemoveAt(i);
+            k = k + 1;
+        }
+    }
+
+    n = n + 1;
+    ileRazy.Add(k+1); k = 0;
+
 }
 
-if (name == "Ewa" && age == 33)
-{
-    Console.WriteLine("Ewa, lat 33");
-}
+//Console.WriteLine(Grupa.Count);
+//Console.WriteLine(k);
 
-else if ((age < 30) && (sex == 'K'))
-{
-    Console.WriteLine("Kobieta, poniżej 30 lat");
-}
+//for (int h = 0; h < Grupa.Count; h++)
+//{
+//    Console.WriteLine(Grupa[h]);
+//}
 
+//for (int g = 0; g < ileRazy.Count; g++)
+//{
+//    Console.WriteLine(ileRazy[g]);
+//}
+
+for (int p = 0; p < ileRazy.Count; p++)
+{
+    Console.WriteLine($"{Grupa[p]}:  {ileRazy[p]}");
+}
