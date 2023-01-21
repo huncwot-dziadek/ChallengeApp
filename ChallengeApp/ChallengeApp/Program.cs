@@ -1,47 +1,29 @@
-﻿using System;
-using System.Globalization;
+﻿using System; using System.Globalization;
 
 List<string> Grupa = new List<string>();
-Grupa.Add("Zenon"); Grupa.Add("Bruno"); Grupa.Add("Bruno"); Grupa.Add("Klaudia");
-Grupa.Add("Wanda"); Grupa.Add("Klaudia"); Grupa.Add("Zenon"); Grupa.Add("Mietek");
-Grupa.Add("Ananiasz"); Grupa.Add("Klaudia"); Grupa.Add("Wanda"); Grupa.Add("Zenon");
-Grupa.Add("Mietek"); Grupa.Add("Ananiasz"); Grupa.Add("Bruno"); Grupa.Add("Zenon");
-Grupa.Add("Klaudia"); Grupa.Add("Klaudia"); Grupa.Add("Mietek"); Grupa.Add("Mietek");
+Grupa.Add("Zenon"); Grupa.Add("Bruno"); Grupa.Add("Klaudia"); Grupa.Add("Klaudia"); Grupa.Add("Zenon");
+Grupa.Add("Klaudia"); Grupa.Add("Zenon"); Grupa.Add("Sławomir"); Grupa.Add("Ananiasz"); Grupa.Add("Klaudia");
+Grupa.Add("Zenon"); Grupa.Add("Zenon"); Grupa.Add("Ananiasz"); Grupa.Add("Mietek"); Grupa.Add("Bruno");
+Grupa.Add("Zenon"); Grupa.Add("Klaudia"); Grupa.Add("Wanda"); Grupa.Add("Mietek"); Grupa.Add("Mietek");
 
 List<int> ileRazy = new List<int>();
+int NumbRepet = 0; int n = 0;
 
-int k = 0;  int n = 0;
-
-for (int j = 0; j < Grupa.Count - 1; j++)
+for (int i = 0; i <= Grupa.Count - 1; i++)
 {
-    for (var i = Grupa.Count - 1; i >= n + 1; i--)
+    for (var j = Grupa.Count - 1; j >= n + 1; j--)
     {
-        if (Grupa[j] == Grupa[i])
+        if (Grupa[i] == Grupa[j])
         {
-            Grupa.RemoveAt(i);
-            k = k + 1;
+            Grupa.RemoveAt(j);
+            NumbRepet = NumbRepet + 1;
         }
     }
-
     n = n + 1;
-    ileRazy.Add(k+1); k = 0;
-
+    ileRazy.Add(NumbRepet + 1); NumbRepet = 0;
 }
 
-//Console.WriteLine(Grupa.Count);
-//Console.WriteLine(k);
-
-//for (int h = 0; h < Grupa.Count; h++)
-//{
-//    Console.WriteLine(Grupa[h]);
-//}
-
-//for (int g = 0; g < ileRazy.Count; g++)
-//{
-//    Console.WriteLine(ileRazy[g]);
-//}
-
-for (int p = 0; p < ileRazy.Count; p++)
+for (int k = 0; k < ileRazy.Count; k++)
 {
-    Console.WriteLine($"{Grupa[p]}:  {ileRazy[p]}");
+    Console.WriteLine($"{Grupa[k]}:  {ileRazy[k]}");
 }
