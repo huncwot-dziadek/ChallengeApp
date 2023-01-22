@@ -1,29 +1,41 @@
-﻿using System; using System.Globalization;
+﻿User user1 = new User("Adam", "123456AAA");
+User user2 = new User("Ewa", "123456AAA");
+User user3 = new User("Karol", "123456AAA");
+User user4 = new User("Mietek", "123456AAA");
 
-List<string> Grupa = new List<string>();
-Grupa.Add("Zenon"); Grupa.Add("Bruno"); Grupa.Add("Klaudia"); Grupa.Add("Klaudia"); Grupa.Add("Zenon");
-Grupa.Add("Klaudia"); Grupa.Add("Zenon"); Grupa.Add("Sławomir"); Grupa.Add("Ananiasz"); Grupa.Add("Klaudia");
-Grupa.Add("Zenon"); Grupa.Add("Zenon"); Grupa.Add("Ananiasz"); Grupa.Add("Mietek"); Grupa.Add("Bruno");
-Grupa.Add("Zenon"); Grupa.Add("Klaudia"); Grupa.Add("Wanda"); Grupa.Add("Mietek"); Grupa.Add("Mietek");
+user1.AddScore(5);
+user1.AddScore(1);
+user1.AddScore(9);
+var result = user1.Result;
+Console.WriteLine(result);
 
-List<int> ileRazy = new List<int>();
-int NumbRepet = 0; int n = 0;
 
-for (int i = 0; i <= Grupa.Count - 1; i++)
+class User
 {
-    for (var j = Grupa.Count - 1; j >= n + 1; j--)
+    private List<int> score = new List<int>();
+
+    public User(string login, string password)
     {
-        if (Grupa[i] == Grupa[j])
+        this.Login = login;
+        this.Password = password;
+
+    }
+    public string Login { get; private set; }
+    public string Password { get; private set; }
+
+    public int Result
+    {
+        get
         {
-            Grupa.RemoveAt(j);
-            NumbRepet = NumbRepet + 1;
+            return this.score.Sum();
         }
     }
-    n = n + 1;
-    ileRazy.Add(NumbRepet + 1); NumbRepet = 0;
+
+    public void AddScore(int number)
+    {
+        this.score.Add(number);
+    }
 }
 
-for (int k = 0; k < ileRazy.Count; k++)
-{
-    Console.WriteLine($"{Grupa[k]}:  {ileRazy[k]}");
-}
+
+
