@@ -1,13 +1,20 @@
 ﻿using ChallengeApp;
 
-User user1 = new User("Adam", "123456AAA");
-User user2 = new User("Ewa", "123456AAA");
-User user3 = new User("Karol", "123456AAA");
-User user4 = new User("Mietek", "123456AAA");
+Emploee emploee1 = new Emploee("Maciej", "Kramarczyk", "29");
+Emploee emploee2 = new Emploee("Anna", "Nienowacka", "33");
+Emploee emploee3 = new Emploee("Waldemar", "Pasikonik", "37");
 
-user1.AddScore(5);
-user1.AddScore(1);
-user1.AddScore(9);
-var result = user1.Result;
-Console.WriteLine(result);
+emploee1.AddScore(7); emploee1.AddScore(1); emploee1.AddScore(8); emploee1.AddScore(6); emploee1.AddScore(7);
+emploee2.AddScore(4); emploee2.AddScore(1); emploee2.AddScore(8); emploee2.AddScore(9); emploee2.AddScore(9);
+emploee3.AddScore(9); emploee3.AddScore(9); emploee3.AddScore(7); emploee3.AddScore(8); emploee3.AddScore(4);
+
+var result1 = emploee1.Result;
+var result2 = emploee2.Result;
+var result3 = emploee3.Result;
+
+
+Console.WriteLine($"{emploee1.Name} {result1}    {emploee2.Name} {result2}     {emploee3.Name} {result3}");
+
+
+
 
