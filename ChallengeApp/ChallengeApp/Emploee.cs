@@ -10,9 +10,6 @@
             this.Surname = surname;
             this.Years = years;
         }
-
-
-
         public string Name { get; private set; }
 
         public string Surname { get; private set; }
@@ -32,5 +29,5 @@
         }
 
     }
-    
+
 }
