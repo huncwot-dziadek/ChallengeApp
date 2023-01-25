@@ -18,6 +18,7 @@
             get
             {
                 return this.score.Sum();
+
             }
         }
 
