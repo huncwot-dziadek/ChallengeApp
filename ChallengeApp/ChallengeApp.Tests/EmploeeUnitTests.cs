@@ -1,5 +1,7 @@
 
 
+using ChallengeApp;
+
 namespace ChallengeApp.Tests
 {
     public class Tests
@@ -8,17 +10,17 @@ namespace ChallengeApp.Tests
         public void WhenUserCollectTwoSetOfPoints_ShouldReturnCorrectSumAsResult()
         {
             // arrange
-            var user = new User("Krzysztof", "lakjfljslo");
-            user.AddScore(5);
-            user.AddScore(8);
+            var emploee = new Emploee("Mieczys³aw", "Kowalski", "33");
+            emploee.AddScore(7);
+            emploee.AddScore(4);
 
             // act
-            var result = user.Result;
-
+            var result = emploee.Result;
 
             // assert
-            Assert.AreEqual(13, result);
+            Assert.AreEqual(10, result);
 
         }
     }
 }
+
