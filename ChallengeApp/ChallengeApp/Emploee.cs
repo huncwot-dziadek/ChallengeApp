@@ -1,9 +1,12 @@
-﻿namespace ChallengeApp
+﻿using System.Runtime.CompilerServices;
+using System.Threading.Tasks.Sources;
+
+namespace ChallengeApp
 {
     public class Emploee
     {
         private List<int> score = new List<int>();
-        private List<int> nulls = new List<int>();
+        //private List<int> nulls = new List<int>();
 
 
         public Emploee(string name, string surname, string years)
@@ -26,24 +29,27 @@
             }
         }
 
-        public int NumberOfZeros
-        {
-            get
-            {
-                return this.nulls.Count();
-            }
-        }
+        //public int NumberOfZeros
+        //{
+        //    get
+        //    {
+        //        return this.nulls.Count();
+        //    }
+        //}
         public void AddScore(int number)
         {
-            if (number > 0 && number < 11)
-            {
-                this.score.Add(number);
-            }
-
-            else number = 0;
-
+            //if (number > 0 && number < 11)
+            //{
+            //    number = number + 100;
             this.score.Add(number);
-            this.nulls.Add(number);
+            // }
+
+            //else (number = 0)
+            //        { 
+
+            //    this.score.Add(number);
+            //    this.nulls.Add(number);
+            //}
 
         }
 

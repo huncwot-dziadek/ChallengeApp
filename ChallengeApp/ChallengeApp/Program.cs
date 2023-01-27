@@ -5,7 +5,7 @@ Emploee emploee1 = new Emploee("Maciej", "Cwaniaczek", "24");
 Emploee emploee2 = new Emploee("Anna", "Nienowacka", "33");
 Emploee emploee3 = new Emploee("Waldemar", "Pasikonik", "40");
 
-emploee1.AddScore(-150);
+emploee1.AddScore(5);
 emploee1.AddScore(5);
 emploee1.AddScore(5);
 emploee1.AddScore(5);
@@ -13,14 +13,14 @@ emploee1.AddScore(5);
 
 emploee2.AddScore(5);
 emploee2.AddScore(5);
-emploee2.AddScore(7);
-emploee2.AddScore(7);
+emploee2.AddScore(5);
+emploee2.AddScore(5);
 emploee2.AddScore(5);
 
 emploee3.AddScore(5);
-emploee3.AddScore(9);
-emploee3.AddScore(7);
-emploee3.AddScore(3);
+emploee3.AddScore(5);
+emploee3.AddScore(5);
+emploee3.AddScore(5);
 emploee3.AddScore(5);
 
 Console.WriteLine(emploee1.Result);
@@ -32,20 +32,21 @@ List<Emploee> emploeeTable = new List<Emploee>()
     emploee1, emploee2, emploee3
 };
 
-List<int> emploeeZeros = new List<int>()
-{
-    emploee1.nulls, emploee2.NumberOfZeros, emploee3.NumberOfZeros
-};
+//List<int> emploeeZeros = new List<int>()
+//{
+//    emploee1.NumberOfZeros, emploee2.NumberOfZeros, emploee3.NumberOfZeros
+//};
 
-foreach (var emplo in emploeeZeros)
-{
-    if (emploee.NumberOfZeros.Count != 0)
-    {
-        emploee.Result = 0;
-    }
+//int k = 0;
 
-}
+//foreach (var emplo in emploeeZeros)
+//{
+//    if (emploee.NumberOfZeros > k)
+//    {
+//        emploee.Result = 0;
+//    }
 
+//}
 
 
 
@@ -135,28 +136,28 @@ Console.WriteLine();
 
 
 
-Emploee emploeeTerrorist = null;
+//Emploee emploeeTerrorist = null;
 
-foreach (var emploee in emploeeTable)
-{
-    if (emploee.Result < 0)
-    {
-        emploeeTerrorist = emploee;
-        
-    }
+//foreach (var emploee in emploeeTable)
+//{
+//    if (emploee.Result < 0)
+//    {
+//        emploeeTerrorist = emploee;
+
+//    }
 
     //else if (emploee.Result == maxResult)
     //{
-     //   emploeeWinner = emploee;
+    //   emploeeWinner = emploee;
     //}
-}
+//}
 
 
-Console.WriteLine($"Jeden/jedna z pracowników/pracowniczek złośliwie zbojkotowali nasz test i wprowadzając ujemne punkty");
-Console.WriteLine($"sami się wykluczyli z naszego wspaniałego programu, który ma zapewnić dwukrotne zwiększenie wydajności");
-Console.WriteLine($"przy zachowaniu budżetu na wynagrodzenia   :))))))))))");
-Console.WriteLine($"jest to:");
-Console.WriteLine("");
-Console.WriteLine(emploeeTerrorist.Name + " " + emploeeTerrorist.Surname + " lat " + emploeeTerrorist.Years);
+//Console.WriteLine($"Jeden/jedna z pracowników/pracowniczek złośliwie zbojkotowali nasz test i wprowadzając ujemne punkty");
+//Console.WriteLine($"sami się wykluczyli z naszego wspaniałego programu, który ma zapewnić dwukrotne zwiększenie wydajności");
+//Console.WriteLine($"przy zachowaniu budżetu na wynagrodzenia   :))))))))))");
+//Console.WriteLine($"jest to:");
+//Console.WriteLine("");
+//Console.WriteLine(emploeeTerrorist.Name + " " + emploeeTerrorist.Surname + " lat " + emploeeTerrorist.Years);
 
 
