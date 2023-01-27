@@ -6,7 +6,7 @@ namespace ChallengeApp
     public class Emploee
     {
         private List<int> score = new List<int>();
-        //private List<int> nulls = new List<int>();
+        private List<int> badNumberValue = new List<int>();
 
 
         public Emploee(string name, string surname, string years)
@@ -29,27 +29,30 @@ namespace ChallengeApp
             }
         }
 
-        //public int NumberOfZeros
-        //{
-        //    get
-        //    {
-        //        return this.nulls.Count();
-        //    }
-        //}
+        public int BadNumbersQuantity
+        {
+            get
+            {
+                return this.badNumberValue.Count();
+            }
+        }
+
+
+        int BadNumber = 0;
         public void AddScore(int number)
         {
-            //if (number > 0 && number < 11)
-            //{
-            //    number = number + 100;
-            this.score.Add(number);
-            // }
+            if (number > 0 && number < 11)
+            {
+                this.score.Add(number);
+            }
 
-            //else (number = 0)
-            //        { 
-
-            //    this.score.Add(number);
-            //    this.nulls.Add(number);
-            //}
+            else
+            {
+                BadNumber = number;
+                number = BadNumber - number;
+                this.score.Add(number);
+                this.badNumberValue.Add(BadNumber);
+            }
 
         }
 
