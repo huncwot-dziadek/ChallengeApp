@@ -8,10 +8,10 @@ Emploee emploeeMarian = new Emploee("Marian", "Pocieszyciel", "42");
 Emploee emploeeMonika = new Emploee("Monika", "Skoczywlas", "22");
 
 
+emploeeMaciej.AddScore(45);
+emploeeMaciej.AddScore(5555);
 emploeeMaciej.AddScore(5);
-emploeeMaciej.AddScore(5);
-emploeeMaciej.AddScore(5);
-emploeeMaciej.AddScore(5);
+emploeeMaciej.AddScore(45);
 emploeeMaciej.AddScore(5);
 
 emploeeAnna.AddScore(5);
@@ -23,20 +23,20 @@ emploeeAnna.AddScore(5);
 emploeeWaldemar.AddScore(5);
 emploeeWaldemar.AddScore(9);
 emploeeWaldemar.AddScore(5);
-emploeeWaldemar.AddScore(5);
+emploeeWaldemar.AddScore(8);
 emploeeWaldemar.AddScore(5);
 
 emploeeMarian.AddScore(1);
 emploeeMarian.AddScore(9);
-emploeeMarian.AddScore(5);
+emploeeMarian.AddScore(1);
 emploeeMarian.AddScore(5);
 emploeeMarian.AddScore(5);
 
 emploeeMonika.AddScore(5);
 emploeeMonika.AddScore(9);
-emploeeMonika.AddScore(520);
-emploeeMonika.AddScore(13);
-emploeeMonika.AddScore(-5);
+emploeeMonika.AddScore(-7);
+emploeeMonika.AddScore(4);
+emploeeMonika.AddScore(15);
 
 List<Emploee> emploeeTable = new List<Emploee>()
 {
@@ -64,16 +64,20 @@ foreach (var emplo in emploeeTable)
     }
 }
 
+
+Console.WriteLine();
+Console.WriteLine();
+
+
+Console.WriteLine($"Lista pracowników, którzy chcieli przechytrzyć nasz system ocen");
+Console.WriteLine($"lub pomyłkowo wprowadzili złe dane:");
+Console.WriteLine();
+
+
 foreach (var emplo in emploeeTable)
 {
-    if (emplo.Result >= maxResult)
+    if (emplo.BadNumbersQuantity > 0)
     {
-        Console.WriteLine(emplo.Name + " " + emplo.Surname + " lat " + emplo.Years);
+        Console.WriteLine($"{emplo.Name} {emplo.Surname} lat {emplo.Years} - {emplo.BadNumbersQuantity} złe wpisy");
     }
 }
-
-
-
-
-int k = emploeeMonika.BadNumbersQuantity;
-Console.WriteLine(k);
