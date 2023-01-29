@@ -16,27 +16,15 @@ namespace ChallengeApp.Tests
             // act
 
             var statistics = employee.GetStatistics();
-            float result1 = statistics.Min;
-            float result2 = statistics.Max;
-            float result3 = statistics.Average;
 
             // assert
 
-            Assert.AreEqual(15, result1);
-            Assert.AreEqual(87, result2);
-            Assert.AreEqual(42, 75, result3);
-
+            Assert.AreEqual(15, statistics.Min);
+            Assert.AreEqual(87, statistics.Max);
+            Assert.AreEqual(42,75, statistics.Average);
         }
     }
 }
 
-
-
-
-
-//[SetUp]
-//public void Setup()
-//{
-//}
 
 
