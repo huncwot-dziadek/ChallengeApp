@@ -3,13 +3,13 @@ using System.Threading.Tasks.Sources;
 
 namespace ChallengeApp
 {
-    public class Emploee
+    public class PreviousEmploee
     {
         private List<int> score = new List<int>();
         private List<int> setOfBadNumbers = new List<int>();
 
 
-        public Emploee(string name, string surname, string years)
+        public PreviousEmploee(string name, string surname, string years)
         {
             this.Name = name;
             this.Surname = surname;
