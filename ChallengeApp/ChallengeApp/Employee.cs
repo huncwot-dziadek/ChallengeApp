@@ -2,33 +2,27 @@
 {
     public class Employee
     {
-
         private List<float> grades = new List<float>();
+
         public Employee(string name, string surname)
         {
             this.Name = name;
             this.Surname = surname;
         }
 
-
         public string Name { get; private set; }
         public string Surname { get; private set; }
 
-        float badGrade = 0;
         public void AddGrade(float grade)
         {
-            if (grade > 0 && grade < 100)
+            if (grade >= 0 && grade <= 100)
             {
                 this.grades.Add(grade);
             }
             else
             {
-                badGrade = grade;
-                grade = 0;
-                this.grades.Add(grade);
-                Console.WriteLine($"Ocena {badGrade} nie mieści się w zakresie 0-100");
-                Console.WriteLine("Została zamieniona oceną 0");
-            } 
+                Console.WriteLine($"Rating {grade} is out of range 0-100, try again");
+            }
         }
 
         public Statistics GetStatistics()
