@@ -13,18 +13,52 @@
         public string Name { get; private set; }
         public string Surname { get; private set; }
 
+
         public void AddGrade(float grade)
         {
             if (grade >= 0 && grade <= 100)
             {
-                this.grades.Add(grade);
+                if ((grade - Math.Floor(grade)) >= 0.5)
+                {
+                    grade = (float)grade;
+                    this.grades.Add((float)Math.Ceiling(grade));        //int valueInInt = (int)grade   - jak wykorzystać
+                }
+                else
+                {
+                    this.grades.Add((float)Math.Floor(grade));
+                }
             }
             else
             {
-                Console.WriteLine($"Rating {grade} is out of range 0-100, try again");
+                Console.WriteLine($"Grade is out of range 0-100 or is not float, try again");
+            }
+            {
+                this.AddGrade(grade);
+            }
+        }
+        public void AddGrade(string grade)
+        {
+            if (float.TryParse(grade, out float result))
+            {
+                this.AddGrade(result);
+            }
+            else
+            {
+                Console.WriteLine("Grade is not float, try again");
             }
         }
 
+        public void AddGrade(double grade)
+        {
+            if (float.TryParse((float)grade, out float result))
+            {
+                this.AddGrade(result);
+            }
+            else
+            {
+                Console.WriteLine("Grade is not float, try again");
+            }
+        }
         public Statistics GetStatistics()
         {
             var statistics = new Statistics();
