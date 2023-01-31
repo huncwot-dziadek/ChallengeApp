@@ -18,14 +18,7 @@
         {
             if (grade >= 0 && grade <= 100)
             {
-                if ((grade - Math.Floor(grade)) >= 0.5)
-                {
-                    this.grades.Add((float)Math.Ceiling(grade));       
-                }
-                else
-                {
-                    this.grades.Add((float)Math.Floor(grade));
-                }
+                this.grades.Add(grade);
             }
             else
             {
@@ -38,25 +31,31 @@
             {
                 this.AddGrade(resultFloat);
             }
-            else if (double.TryParse(grade, out double resultDouble))
-            {
-                var valueInDouble = (float)resultDouble;
-                this.AddGrade(valueInDouble);
-            }
-            else if (short.TryParse(grade, out short resultShort))
-            {
-                var valueInShort = (float)resultShort;
-                this.AddGrade(valueInShort);
-            }
-            else if (long.TryParse(grade, out long resultLong))
-            {
-                var valueInLong = (float)resultShort;
-                this.AddGrade(valueInLong);
-            }
             else
             {
                 Console.WriteLine($"Invalid grade, try again");
             }
+        }
+
+        public void AddGrade(double grade)
+        {
+            var gradeMadeOfDouble = (float)grade;
+            this.AddGrade(gradeMadeOfDouble);
+        }
+        public void AddGrade(long grade)
+        {
+            var gradeMadeOfLong = (float)grade;
+            this.AddGrade(gradeMadeOfLong);
+        }
+        public void AddGrade(short grade)
+        {
+            var gradeMadeOfShort = (float)grade;
+            this.AddGrade(gradeMadeOfShort);
+        }
+        public void AddGrade(int grade)
+        {
+            var gradeMadeOfInt = (float)grade;
+            this.AddGrade(gradeMadeOfInt);
         }
 
         public Statistics GetStatistics()
@@ -77,7 +76,6 @@
 
             return statistics;
         }
-
 
     }
 }
