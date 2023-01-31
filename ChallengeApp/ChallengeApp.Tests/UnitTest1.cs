@@ -8,10 +8,10 @@ namespace ChallengeApp.Tests
             // arrange
 
             var employee = new Employee("Gabriel", "Pypeæ");
-            employee.AddGrade(15);
-            employee.AddGrade(74);
-            employee.AddGrade(52);
-            employee.AddGrade(87);
+            employee.AddGrade("4000000");
+            employee.AddGrade("30,4555");
+            employee.AddGrade("Zzzzzz");
+            employee.AddGrade("30,77777");
 
             // act
 
@@ -19,9 +19,9 @@ namespace ChallengeApp.Tests
 
             // assert
 
-            Assert.AreEqual(15, statistics.Min);
-            Assert.AreEqual(87, statistics.Max);
-            Assert.AreEqual(Math.Round(57.00, 2), Math.Round(statistics.Average, 2));
+            Assert.AreEqual(30, statistics.Min);
+            Assert.AreEqual(31, statistics.Max);
+            Assert.AreEqual(Math.Round(30.5, 2), Math.Round(statistics.Average, 2));
         }
     }
 }

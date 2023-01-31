@@ -20,8 +20,7 @@
             {
                 if ((grade - Math.Floor(grade)) >= 0.5)
                 {
-                    grade = (float)grade;
-                    this.grades.Add((float)Math.Ceiling(grade));        //int valueInInt = (int)grade   - jak wykorzystać
+                    this.grades.Add((float)Math.Ceiling(grade));       
                 }
                 else
                 {
@@ -30,35 +29,36 @@
             }
             else
             {
-                Console.WriteLine($"Grade is out of range 0-100 or is not float, try again");
-            }
-            {
-                this.AddGrade(grade);
+                Console.WriteLine($"Grade is out of range 0-100, try again");
             }
         }
         public void AddGrade(string grade)
         {
-            if (float.TryParse(grade, out float result))
+            if (float.TryParse(grade, out float resultFloat))
             {
-                this.AddGrade(result);
+                this.AddGrade(resultFloat);
+            }
+            else if (double.TryParse(grade, out double resultDouble))
+            {
+                var valueInDouble = (float)resultDouble;
+                this.AddGrade(valueInDouble);
+            }
+            else if (short.TryParse(grade, out short resultShort))
+            {
+                var valueInShort = (float)resultShort;
+                this.AddGrade(valueInShort);
+            }
+            else if (long.TryParse(grade, out long resultLong))
+            {
+                var valueInLong = (float)resultShort;
+                this.AddGrade(valueInLong);
             }
             else
             {
-                Console.WriteLine("Grade is not float, try again");
+                Console.WriteLine($"Invalid grade, try again");
             }
         }
 
-        public void AddGrade(double grade)
-        {
-            if (float.TryParse((float)grade, out float result))
-            {
-                this.AddGrade(result);
-            }
-            else
-            {
-                Console.WriteLine("Grade is not float, try again");
-            }
-        }
         public Statistics GetStatistics()
         {
             var statistics = new Statistics();

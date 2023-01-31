@@ -2,10 +2,10 @@
 using System;
 
 var employee1 = new Employee("Gabriel", "Pypeć");
-employee1.AddGrade("Adamek");
+employee1.AddGrade("4000000");
 employee1.AddGrade("30,4555");
-employee1.AddGrade(25.5);
-employee1.AddGrade("15,77777");
+employee1.AddGrade("Zzzzzz");
+employee1.AddGrade("30,77777");
 
 var statistics = employee1.GetStatistics();
 
