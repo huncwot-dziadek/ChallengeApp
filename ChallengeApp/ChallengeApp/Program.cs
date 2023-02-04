@@ -1,52 +1,55 @@
 ﻿using ChallengeApp;
-using System;
+using System.Diagnostics;
 
-var employee1 = new Employee("Gabriel", "Pypeć");
-employee1.AddGrade("4000000");
-employee1.AddGrade("30");
-employee1.AddGrade(72.553);
-employee1.AddGrade(50.4f);
+Console.WriteLine("Welcome to the program WHAT EMPLOYEE");
+Console.WriteLine("                       =============");
+Console.WriteLine();
+Console.WriteLine();
+Console.WriteLine("Enter employee details:");
+Console.Write("Name:      ");
+var name = Console.ReadLine();
+Console.Write("Surname:   ");
+var surname = Console.ReadLine();
 
-var statistics1 = employee1.GetStatisticsWithForEach();
-var statistics2 = employee1.GetStatisticsWithFor();
-var statistics3 = employee1.GetStatisticsWithDoWhile();
-var statistics4 = employee1.GetStatisticsWithWhile();
+var employee = new Employee(name, surname);
+
+Console.WriteLine();
+Console.WriteLine("The rating should be in the range 0-100");
+Console.WriteLine("You can give a rating A,B,C,D and E:");
+Console.WriteLine("A = 100 pkt");
+Console.WriteLine("B = 75 pkt");
+Console.WriteLine("C = 50 pkt");
+Console.WriteLine("D = 25 pkt");
+Console.WriteLine("E = 0 pkt");
+
+Console.WriteLine();
+Console.WriteLine("Start entering data or exit the program by pressing key Q:");
+Console.WriteLine("Give your first grade:");
+
+var firstInput = Console.ReadLine();
+employee.AddGrade(firstInput);
+
+while (true)
+{
+    Console.WriteLine("Give your next grade:");
+    var nextInput = Console.ReadLine();
+
+    if (nextInput == "q" || nextInput == "Q")
+    {
+        break;
+    }
+
+    employee.AddGrade(nextInput);
+  
+}
+var statistics = employee.GetStatistics();
 
 Console.WriteLine();
 Console.WriteLine();
-Console.WriteLine($"{employee1.Name} {employee1.Surname} obtained the following results:");
-Console.WriteLine("Using the metod ForEach:");
-Console.WriteLine($"Max rating: {statistics1.Max}");
-Console.WriteLine($"Min rating:  {statistics1.Min}");
-Console.WriteLine($"Average rating:  {statistics1.Average:N2}");
-
-Console.WriteLine();
-Console.WriteLine();
-Console.WriteLine($"{employee1.Name} {employee1.Surname} obtained the following results:");
-Console.WriteLine("Using the metod For:");
-Console.WriteLine($"Max rating: {statistics2.Max}");
-Console.WriteLine($"Min rating:  {statistics2.Min}");
-Console.WriteLine($"Average rating:  {statistics2.Average:N2}");
-
-Console.WriteLine();
-Console.WriteLine();
-Console.WriteLine($"{employee1.Name} {employee1.Surname} obtained the following results:");
-Console.WriteLine("Using the metod DoWhile:");
-Console.WriteLine($"Max rating: {statistics3.Max}");
-Console.WriteLine($"Min rating:  {statistics3.Min}");
-Console.WriteLine($"Average rating:  {statistics3.Average:N2}");
-
-Console.WriteLine();
-Console.WriteLine();
-Console.WriteLine($"{employee1.Name} {employee1.Surname} obtained the following results:");
-Console.WriteLine("Using the metod While:");
-Console.WriteLine($"Max rating: {statistics4.Max}");
-Console.WriteLine($"Min rating:  {statistics4.Min}");
-Console.WriteLine($"Average rating:  {statistics4.Average:N2}");
-
-//List<float> statisticsAll = new List<float>();
-//statisticsAll.Add(statistics1);
-
+Console.WriteLine($"{employee.Name} {employee.Surname} received {statistics.QuantityGrades} ratings");
+Console.WriteLine($"Rating max:  {statistics.Max}");
+Console.WriteLine($"Rating min:  {statistics.Min}");
+Console.WriteLine($"Average ratings:  {statistics.Average:N2}");
 
 
 
