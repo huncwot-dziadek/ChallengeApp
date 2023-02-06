@@ -18,59 +18,67 @@
 
         public void AddGrade(float grade)
         {
-            if (grade >= 0 && grade <= 100)
-            {
-                this.grades.Add(grade);
-            }
-            else
-            {
-                Console.WriteLine($"Grade is out of range 0-100, try again");
-            }
-        }
-        public void AddGrade(string grade)
-        {
-            if (float.TryParse(grade, out float resultFloat))
-            {
-                this.AddGrade(resultFloat);
-            }
-            else
-            {
-                int indicator = 0;
-                switch (grade)
-                {
-                    case "A":
-                    case "a":
-                        this.grades.Add(100);
-                        indicator++;
-                        break;
-                    case "B":
-                    case "b":
-                        this.grades.Add(75);
-                        indicator++;
-                        break;
-                    case "C":
-                    case "c":
-                        this.grades.Add(50);
-                        indicator++;
-                        break;
-                    case "D":
-                    case "d":
-                        this.grades.Add(25);
-                        indicator++;
-                        break;
-                    case "E":
-                    case "e":
-                        this.grades.Add(0);
-                        indicator++;
-                        break;
-                }
 
-                if (indicator == 0)
-                {
-                    Console.WriteLine($"Invalid grade or wrong letter, try again");
-                }
-            }
+            this.grades.Add(grade);
+
+            //if (grade >= 0 && grade <= 100)
+            //{
+            //    this.grades.Add(grade);
+            //}
+            //else
+            //{
+            //    var gradeOutOfRange = grade;
+            //    //Console.WriteLine($"Grade is out of range 0-100, try again");
+            //}
         }
+        //public void AddGrade(string grade)
+        //{
+
+           // var gradeMadeOfString = (float)grade;
+            //this.AddGrade(gradeMadeOfString);
+
+            //if (float.TryParse(grade, out float resultFloat))
+            //{
+            // this.AddGrade(resultFloat);
+            //}
+            //else
+            //{
+            //    int indicator = 0;
+            //    switch (grade)
+            //    {
+            //        case "A":
+            //        case "a":
+            //            this.grades.Add(100);
+            //            indicator++;
+            //            break;
+            //        case "B":
+            //        case "b":
+            //            this.grades.Add(75);
+            //            indicator++;
+            //            break;
+            //        case "C":
+            //        case "c":
+            //            this.grades.Add(50);
+            //            indicator++;
+            //            break;
+            //        case "D":
+            //        case "d":
+            //            this.grades.Add(25);
+            //            indicator++;
+            //            break;
+            //        case "E":
+            //        case "e":
+            //            this.grades.Add(0);
+            //            indicator++;
+            //            break;
+            //    }
+
+            //    if (indicator == 0)
+            //    {
+            //        Console.WriteLine($"Invalid grade or wrong letter, try again");
+            //    }
+            //}
+        //}
         public void AddGrade(double grade)
         {
             var gradeMadeOfDouble = (float)grade;
