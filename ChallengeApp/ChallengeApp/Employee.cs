@@ -15,117 +15,31 @@
 
         public string Name { get; private set; }
         public string Surname { get; private set; }
+        public int BadDataIndicator { get; set; }
 
         public void AddGrade(float grade)
         {
-
-            this.grades.Add(grade);
-
-            //if (grade >= 0 && grade <= 100)
-            //{
-            //    this.grades.Add(grade);
-            //}
-            //else
-            //{
-            //    var gradeOutOfRange = grade;
-            //    //Console.WriteLine($"Grade is out of range 0-100, try again");
-            //}
-        }
-        //public void AddGrade(string grade)
-        //{
-
-           // var gradeMadeOfString = (float)grade;
-            //this.AddGrade(gradeMadeOfString);
-
-            //if (float.TryParse(grade, out float resultFloat))
-            //{
-            // this.AddGrade(resultFloat);
-            //}
-            //else
-            //{
-            //    int indicator = 0;
-            //    switch (grade)
-            //    {
-            //        case "A":
-            //        case "a":
-            //            this.grades.Add(100);
-            //            indicator++;
-            //            break;
-            //        case "B":
-            //        case "b":
-            //            this.grades.Add(75);
-            //            indicator++;
-            //            break;
-            //        case "C":
-            //        case "c":
-            //            this.grades.Add(50);
-            //            indicator++;
-            //            break;
-            //        case "D":
-            //        case "d":
-            //            this.grades.Add(25);
-            //            indicator++;
-            //            break;
-            //        case "E":
-            //        case "e":
-            //            this.grades.Add(0);
-            //            indicator++;
-            //            break;
-            //    }
-
-            //    if (indicator == 0)
-            //    {
-            //        Console.WriteLine($"Invalid grade or wrong letter, try again");
-            //    }
-            //}
-        //}
-        public void AddGrade(double grade)
-        {
-            var gradeMadeOfDouble = (float)grade;
-            this.AddGrade(gradeMadeOfDouble);
-        }
-        public void AddGrade(long grade)
-        {
-            var gradeMadeOfLong = (float)grade;
-            this.AddGrade(gradeMadeOfLong);
-        }
-        public void AddGrade(short grade)
-        {
-            var gradeMadeOfShort = (float)grade;
-            this.AddGrade(gradeMadeOfShort);
-        }
-        public void AddGrade(int grade)
-        {
-            var gradeMadeOfInt = (float)grade;
-            this.AddGrade(gradeMadeOfInt);
-        }
-        public void AddGrade(char grade)
-        {
-            switch (grade)
+            if (grade >= 0 && grade <= 100)
             {
-                case 'A':
-                case 'a':
-                    this.grades.Add(100);
-                    break;
-                case 'B':
-                case 'b':
-                    this.grades.Add(75);
-                    break;
-                case 'C':
-                case 'c':
-                    this.grades.Add(50);
-                    break;
-                case 'D':
-                case 'd':
-                    this.grades.Add(25);
-                    break;
-                case 'E':
-                case 'e':
-                    this.grades.Add(0);
-                    break;
-
-                    Console.WriteLine("Wrong Letter, try again");
+                this.grades.Add(grade);
+                this.BadDataIndicator = 0;
             }
+            else
+            {
+                this.BadDataIndicator = 1;
+            }
+        }
+        public void AddGrade(string grade)
+        {
+            if (float.TryParse(grade, out float resultFloat))
+            {
+                this.AddGrade(resultFloat);
+            }
+            else
+            {
+                this.BadDataIndicator = 2;
+            }
+
         }
 
         public Statistics GetStatistics()
@@ -154,6 +68,105 @@
 
 
 
+
+
+
+//    else
+//    {
+//        int indicator = 0;
+//        switch (grade)
+//        {
+//            case "A":
+//            case "a":
+//                this.grades.Add(100);
+//                this.Lampka = 0;
+//                indicator++;
+//                break;
+//            case "B":
+//            case "b":
+//                this.grades.Add(75);
+//                this.Lampka = 0;
+//                indicator++;
+//                break;
+//            case "C":
+//            case "c":
+//                this.grades.Add(50);
+//                this.Lampka = 0;
+//                indicator++;
+//                break;
+//            case "D":
+//            case "d":
+//                this.grades.Add(25);
+//                this.Lampka = 0;
+//                indicator++;
+//                break;
+//            case "E":
+//            case "e":
+//                this.grades.Add(0);
+//                this.Lampka = 0;
+//                indicator++;
+//                break;
+
+//        }
+
+//        if (indicator == 0)
+//        {
+//            this.Lampka = 2;
+//        }
+//    }
+
+//}
+//public void AddGrade(double grade)
+//{
+//    var gradeMadeOfDouble = (float)grade;
+//    this.AddGrade(gradeMadeOfDouble);
+//}
+//public void AddGrade(long grade)
+//{
+//    var gradeMadeOfLong = (float)grade;
+//    this.AddGrade(gradeMadeOfLong);
+//}
+//public void AddGrade(short grade)
+//{
+//    var gradeMadeOfShort = (float)grade;
+//    this.AddGrade(gradeMadeOfShort);
+//}
+//public void AddGrade(int grade)
+//{
+//    var gradeMadeOfInt = (float)grade;
+//    this.AddGrade(gradeMadeOfInt);
+//}
+//public void AddGrade(char grade)
+//{
+//    switch (grade)
+//    {
+//        case 'A':
+//        case 'a':
+//            this.grades.Add(100);
+//            break;
+//        case 'B':
+//        case 'b':
+//            this.grades.Add(75);
+//            break;
+//        case 'C':
+//        case 'c':
+//            this.grades.Add(50);
+//            break;
+//        case 'D':
+//        case 'd':
+//            this.grades.Add(25);
+//            break;
+//        case 'E':
+//        case 'e':
+//            this.grades.Add(0);
+//            break;
+
+//            Console.WriteLine("Wrong Letter, try again");
+//    } //}
+
+
+
+
 //switch (statistics.Average)
 //{
 //    case var average when average > 80:
@@ -163,4 +176,3 @@
 //        statistics.AverageLetter = 'B';
 //        break;
 //}
-
