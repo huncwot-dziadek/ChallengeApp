@@ -4,16 +4,13 @@
     {
         private List<float> grades = new List<float>();
 
-        public Employee()
-        {
-        }
         public Employee(string name, string surname)
         {
             this.Name = name;
             this.Surname = surname;
         }
 
-        public string Name { get; private set; }
+        public string Name { get; set; }
         public string Surname { get; private set; }
         public int BadDataIndicator { get; set; }
 
@@ -22,11 +19,10 @@
             if (grade >= 0 && grade <= 100)
             {
                 this.grades.Add(grade);
-                this.BadDataIndicator = 0;
             }
             else
             {
-                this.BadDataIndicator = 1;
+                throw new Exception("Grade out of range");
             }
         }
         public void AddGrade(string grade)
@@ -37,7 +33,7 @@
             }
             else
             {
-                this.BadDataIndicator = 2;
+                throw new Exception("String is not float");
             }
 
         }

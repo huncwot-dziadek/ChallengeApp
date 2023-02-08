@@ -24,27 +24,22 @@ while (true)
 {
     Console.WriteLine("Give your next grade:");
     var nextInput = Console.ReadLine();
-
-    employee.AddGrade(nextInput);
-
-    if (employee.BadDataIndicator == 1)
-    {
-        Console.WriteLine("Grade is out of range 0-100, try again");
-        employee.BadDataIndicator = 0;
-    }
-    else if (employee.BadDataIndicator == 2)
-    {
-        Console.WriteLine("Invalid grade, try again");
-        employee.BadDataIndicator = 0;
-    }
-    else
-    {
-    }
-
     if (nextInput == "q" || nextInput == "Q")
     {
         break;
     }
+
+    try
+    {
+        employee.AddGrade(nextInput);
+    }
+    catch (Exception e)
+    {
+        Console.WriteLine($"Exception catched: {e.Message}");
+    }
+    
+
+    
 }
 
 var statistics = employee.GetStatistics();
