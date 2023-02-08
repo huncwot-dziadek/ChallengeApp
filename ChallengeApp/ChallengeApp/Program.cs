@@ -8,11 +8,18 @@ Console.WriteLine();
 Console.WriteLine("Enter employee details:");
 Console.Write("Name:      ");
 var name = Console.ReadLine();
-Console.Write("Surname:   ");
 
+Console.Write("Surname:   ");
 var surname = Console.ReadLine();
 
-var employee = new Employee(name, surname);
+var sex = Console.ReadLine();
+
+var ageString = Console.ReadLine();
+var age = int.Parse(ageString);
+
+var functionInCompany = Console.ReadLine();
+
+var employee = new Employee(name, surname, sex, age, functionInCompany);
 
 Console.WriteLine();
 Console.WriteLine("The rating should be in the range 0-100");
