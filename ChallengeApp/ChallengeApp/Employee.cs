@@ -1,14 +1,23 @@
 ﻿namespace ChallengeApp
 {
-    public class Employee : Person
+    public class Employee : IEmployee
     {
         private List<float> grades = new List<float>();
 
 
-        public Employee(string name, string surname, string sex, int age, string functionInCompany)
-            : base(name, surname, sex, age, functionInCompany)
+        public Employee(string name, string surname, string functionInCompany)
+
         {
+            this.Name = name;
+            this.Surname = surname;
+            this.FunctionInCompany = "Worker";
         }
+
+        public string Name { get; private set; }
+        public string Surname { get; private set; }
+        public string FunctionInCompany { get; private set; }
+
+
         public void AddGrade(float grade)
         {
             if (grade >= 0 && grade <= 100)
@@ -20,6 +29,19 @@
                 throw new Exception("Grade out of range");
             }
         }
+
+        public void AddGrade(double grade)
+        {
+            var gradeMadeOfDouble = (float)grade;
+            this.AddGrade(gradeMadeOfDouble);
+        }
+
+        public void AddGrade(int grade)
+        {
+            var grademadeofint = (float)grade;
+            this.AddGrade(grademadeofint);
+        }
+
         public void AddGrade(string grade)
         {
             if (float.TryParse(grade, out float resultFloat))
@@ -31,6 +53,33 @@
                 throw new Exception("String is not float");
             }
 
+        }
+        public void AddGrade(char grade)
+        {
+            switch (grade)
+            {
+                case 'A':
+                case 'a':
+                    this.grades.Add(100);
+                    break;
+                case 'B':
+                case 'b':
+                    this.grades.Add(75);
+                    break;
+                case 'C':
+                case 'c':
+                    this.grades.Add(50);
+                    break;
+                case 'D':
+                case 'd':
+                    this.grades.Add(25);
+                    break;
+                case 'E':
+                case 'e':
+                    this.grades.Add(0);
+                    break;
+
+            }
         }
 
         public Statistics GetStatistics()
@@ -107,53 +156,6 @@
 //    }
 
 //}
-//public void AddGrade(double grade)
-//{
-//    var gradeMadeOfDouble = (float)grade;
-//    this.AddGrade(gradeMadeOfDouble);
-//}
-//public void AddGrade(long grade)
-//{
-//    var gradeMadeOfLong = (float)grade;
-//    this.AddGrade(gradeMadeOfLong);
-//}
-//public void AddGrade(short grade)
-//{
-//    var gradeMadeOfShort = (float)grade;
-//    this.AddGrade(gradeMadeOfShort);
-//}
-//public void AddGrade(int grade)
-//{
-//    var gradeMadeOfInt = (float)grade;
-//    this.AddGrade(gradeMadeOfInt);
-//}
-//public void AddGrade(char grade)
-//{
-//    switch (grade)
-//    {
-//        case 'A':
-//        case 'a':
-//            this.grades.Add(100);
-//            break;
-//        case 'B':
-//        case 'b':
-//            this.grades.Add(75);
-//            break;
-//        case 'C':
-//        case 'c':
-//            this.grades.Add(50);
-//            break;
-//        case 'D':
-//        case 'd':
-//            this.grades.Add(25);
-//            break;
-//        case 'E':
-//        case 'e':
-//            this.grades.Add(0);
-//            break;
-
-//            Console.WriteLine("Wrong Letter, try again");
-//    } //}
 
 
 

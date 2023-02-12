@@ -7,11 +7,11 @@ namespace ChallengeApp.Tests
         {
             // arrange
 
-            var employee = new Employee("Gabriel", "Pypeæ");
-            employee.AddGrade("4000000");
-            employee.AddGrade("30,4555");
-            employee.AddGrade("Zzzzzz");
-            employee.AddGrade("30,77777");
+            var employee = new Employee("Gabriel", "Pypeæ", "");
+            employee.AddGrade(4000000);
+            employee.AddGrade(30.4555);
+            employee.AddGrade(22);
+            employee.AddGrade(30.77777);
 
             // act
 
