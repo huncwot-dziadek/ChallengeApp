@@ -7,7 +7,7 @@ namespace ChallengeApp.Tests
         {
             // arrange
 
-            var employee = new Employee("Gabriel", "Pypeæ", "");
+            var employee = new EmployeeInMemory("Gabriel", "Pypeæ");
             employee.AddGrade(4000000);
             employee.AddGrade(30.4555);
             employee.AddGrade(22);

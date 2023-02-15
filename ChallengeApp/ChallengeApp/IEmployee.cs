@@ -5,10 +5,7 @@
 
         string Name { get; }
         string Surname { get; }
-        string FunctionInCompany { get; }
-        
-
-
+        string FunctionInCompany { get; }       
         public void AddGrade(float grade);
         public void AddGrade(double grade);
         public void AddGrade(int grade);

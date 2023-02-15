@@ -1,24 +1,17 @@
 ﻿namespace ChallengeApp
 {
-    public class Employee : IEmployee
+    public class EmployeeInMemory : EmployeeBase
     {
         private List<float> grades = new List<float>();
-
-
-        public Employee(string name, string surname, string functionInCompany)
-
+        public EmployeeInMemory(string name, string surname)
+            : base(name, surname)
         {
-            this.Name = name;
-            this.Surname = surname;
             this.FunctionInCompany = "Worker";
         }
 
-        public string Name { get; private set; }
-        public string Surname { get; private set; }
-        public string FunctionInCompany { get; private set; }
+        public override string FunctionInCompany { get; set; }
 
-
-        public void AddGrade(float grade)
+        public override void AddGrade(float grade)
         {
             if (grade >= 0 && grade <= 100)
             {
@@ -30,19 +23,19 @@
             }
         }
 
-        public void AddGrade(double grade)
+        public override void AddGrade(double grade)
         {
             var gradeMadeOfDouble = (float)grade;
             this.AddGrade(gradeMadeOfDouble);
         }
 
-        public void AddGrade(int grade)
+        public override void AddGrade(int grade)
         {
-            var grademadeofint = (float)grade;
-            this.AddGrade(grademadeofint);
+            var gradeMadeOfInt = (float)grade;
+            this.AddGrade(gradeMadeOfInt);
         }
 
-        public void AddGrade(string grade)
+        public override void AddGrade(string grade)
         {
             if (float.TryParse(grade, out float resultFloat))
             {
@@ -54,7 +47,7 @@
             }
 
         }
-        public void AddGrade(char grade)
+        public override void AddGrade(char grade)
         {
             switch (grade)
             {
@@ -82,7 +75,7 @@
             }
         }
 
-        public Statistics GetStatistics()
+        public override Statistics GetStatistics()
         {
             var statistics = new Statistics();
             statistics.Average = 0;
@@ -102,70 +95,6 @@
 
             return statistics;
         }
+
     }
 }
-
-
-
-
-
-
-
-//    else
-//    {
-//        int indicator = 0;
-//        switch (grade)
-//        {
-//            case "A":
-//            case "a":
-//                this.grades.Add(100);
-//                this.Lampka = 0;
-//                indicator++;
-//                break;
-//            case "B":
-//            case "b":
-//                this.grades.Add(75);
-//                this.Lampka = 0;
-//                indicator++;
-//                break;
-//            case "C":
-//            case "c":
-//                this.grades.Add(50);
-//                this.Lampka = 0;
-//                indicator++;
-//                break;
-//            case "D":
-//            case "d":
-//                this.grades.Add(25);
-//                this.Lampka = 0;
-//                indicator++;
-//                break;
-//            case "E":
-//            case "e":
-//                this.grades.Add(0);
-//                this.Lampka = 0;
-//                indicator++;
-//                break;
-
-//        }
-
-//        if (indicator == 0)
-//        {
-//            this.Lampka = 2;
-//        }
-//    }
-
-//}
-
-
-
-
-//switch (statistics.Average)
-//{
-//    case var average when average > 80:
-//        statistics.AverageLetter = 'A';
-//        break;
-//    case var average when average > 60:
-//        statistics.AverageLetter = 'B';
-//        break;
-//}
