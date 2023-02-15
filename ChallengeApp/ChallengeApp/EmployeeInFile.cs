@@ -3,7 +3,9 @@
     public class EmployeeInFile : EmployeeBase
     {
 
-        private const string fileName = "grades.txt";
+        private const string fileName = "grades4.txt";
+
+        private List<float> numbers = new List<float>();
 
         public EmployeeInFile(string name, string surname)
             : base(name, surname)
@@ -57,11 +59,6 @@
 
         public override Statistics GetStatistics()
         {
-            var result = new Statistics();
-            result.Average = 0;
-            result.Max = float.MinValue;
-            result.Min = float.MaxValue;
-            result.QuantityGrades = 0;
 
             if (File.Exists(fileName))
             {
@@ -71,24 +68,37 @@
                     while (line != null)
                     {
                         var number = float.Parse(line);
-                        List<float> numbers = new List<float>();
-
-                        foreach (var grade in numbers)
-                        {
-                            result.Average += grade;
-                            result.Max = Math.Max(result.Max, grade);
-                            result.Min = Math.Min(result.Min, grade);
-                        }
-
-                        result.Average /= numbers.Count;
-                        result.QuantityGrades += numbers.Count;
-
+                        numbers.Add(number);
+                        line = reader.ReadLine();
                     }
+
                 }
 
             }
 
+            var result = this.GetStatistics(numbers);
             return result;
+        }
+
+        private Statistics GetStatistics(List<float> numbers)
+        {
+            var statistics = new Statistics();
+            statistics.Average = 0;
+            statistics.Max = float.MinValue;
+            statistics.Min = float.MaxValue;
+            statistics.QuantityGrades = 0;
+
+            foreach (var grade in this.numbers)
+            {
+                statistics.Average += grade;
+                statistics.Max = Math.Max(statistics.Max, grade);
+                statistics.Min = Math.Min(statistics.Min, grade);
+            }
+
+            statistics.Average /= this.numbers.Count;
+            statistics.QuantityGrades += this.numbers.Count;
+
+            return statistics;
         }
     }
 }

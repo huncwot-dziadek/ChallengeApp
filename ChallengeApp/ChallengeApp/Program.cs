@@ -13,15 +13,15 @@ var name = Console.ReadLine();
 Console.Write("Surname:               ");
 var surname = Console.ReadLine();
 
-//Console.Write("Function in Company:   ");
-//var functionInCompany = Console.ReadLine();
-
 var employee = new EmployeeInFile(name, surname);
 
 employee.AddGrade(1.5f);
 employee.AddGrade(17.5);
-employee.AddGrade('B');
+employee.AddGrade(100);
 employee.AddGrade(-4);
+employee.AddGrade(44);
+
+
 
 Console.WriteLine();
 Console.WriteLine();
