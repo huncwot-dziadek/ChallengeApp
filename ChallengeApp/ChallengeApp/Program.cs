@@ -13,26 +13,35 @@ var name = Console.ReadLine();
 Console.Write("Surname:               ");
 var surname = Console.ReadLine();
 
-var employee = new EmployeeInFile(name, surname);
+var employee = new EmployeeInMemory(name, surname);
+//employee.GradeAdded += EmployeeGradeAdded;
 
-employee.AddGrade(1.5f);
-employee.AddGrade(17.5);
-employee.AddGrade(100);
-employee.AddGrade(-4);
-employee.AddGrade(44);
+//void EmployeeGradeAdded(object sender, EventArgs args)
+//{
+//    Console.WriteLine("dodano nową ocenę");
+
+//    }
+
+//employee.AddGrade(1.6f);
+
+//employee.AddGrade(1.5f);
+//employee.AddGrade(17.5);
+//employee.AddGrade(100);
+//employee.AddGrade(-4);
+//employee.AddGrade(44);
 
 
 
-Console.WriteLine();
-Console.WriteLine();
-var result = employee.GetStatistics();
+//Console.WriteLine();
+//Console.WriteLine();
+//var result = employee.GetStatistics();
 
-Console.WriteLine();
-Console.WriteLine();
-Console.WriteLine($"{employee.Name} {employee.Surname} received {result.QuantityGrades} ratings");
-Console.WriteLine($"Rating max:  {result.Max}");
-Console.WriteLine($"Rating min:  {result.Min}");
-Console.WriteLine($"Average ratings:  {result.Average:N2}");
+//Console.WriteLine();
+//Console.WriteLine();
+//Console.WriteLine($"{employee.Name} {employee.Surname} received {result.QuantityGrades} ratings");
+//Console.WriteLine($"Rating max:  {result.Max}");
+//Console.WriteLine($"Rating min:  {result.Min}");
+//Console.WriteLine($"Average ratings:  {result.Average:N2}");
 
 
 

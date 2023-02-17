@@ -2,20 +2,36 @@
 {
     public class EmployeeInMemory : EmployeeBase
     {
+        
         private List<float> grades = new List<float>();
         public EmployeeInMemory(string name, string surname)
             : base(name, surname)
         {
             this.FunctionInCompany = "Worker";
+
+            GradeAddedDelegate grrr;
+            grrr = Info_o_ocenie;
+
         }
 
         public override string FunctionInCompany { get; set; }
+
+       public override void Info_o_ocenie(object sender, EventArgs args)
+        {
+            Console.WriteLine("dodano nową ocenę");
+        }
 
         public override void AddGrade(float grade)
         {
             if (grade >= 0 && grade <= 100)
             {
                 this.grades.Add(grade);
+                
+
+                //if(EmployeeBase.GradeAdded != null)
+                //{
+                //    GradeAdded(this, new EventArgs());
+                //}
             }
             else
             {

@@ -3,7 +3,7 @@
     public class EmployeeInFile : EmployeeBase
     {
 
-        private const string fileName = "grades4.txt";
+        private const string fileName = "grades.txt";
 
         private List<float> numbers = new List<float>();
 
@@ -13,6 +13,10 @@
             this.FunctionInCompany = "Worker";
         }
 
+        public override void Info_o_ocenie(object sender, EventArgs args)
+        {
+            Console.WriteLine("dodano nową ocenę");
+        }
         public override string FunctionInCompany { get; set; }
 
         public override void AddGrade(float grade)
