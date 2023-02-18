@@ -20,13 +20,13 @@ namespace ChallengeApp
         Console.Write("Surname:               ");
         var surname = Console.ReadLine();
 
-        var employee = new EmployeeInFile(name, surname);
+        var employee = new EmployeeInMemory(name, surname);
         employee.GradeAdded += EmployeeGradeAdded;
 
 
         void EmployeeGradeAdded(object sender, EventArgs args)
         {
-            Console.WriteLine($"dodano nową ocenę");
+            Console.WriteLine($"New grade added");
         }
 
         Console.WriteLine();
@@ -39,14 +39,14 @@ namespace ChallengeApp
         {
             Console.WriteLine("Give your next grade:");
             var nextInput = Console.ReadLine();
+            char.TryParse(nextInput, out char nextInputChar);
 
             if (nextInput == "q" || nextInput == "Q")
             {
                 break;
             }
 
-
-            else if (nextInput == "A" || nextInput == "a" || nextInput == "B" || nextInput == "b" || nextInput == "C" || nextInput == "c" || nextInput == "D" || nextInput == "d" || nextInput == "E" || nextInput == "e")
+            else if ((65 <= nextInputChar && nextInputChar <= 69) || (97 <= nextInputChar && nextInputChar <= 101))           
             {
                 char.TryParse(nextInput, out char value);
                 employee.AddGrade(value);
@@ -71,7 +71,7 @@ namespace ChallengeApp
 
         Console.WriteLine();
         Console.WriteLine();
-        Console.WriteLine($"{employee.Name} {employee.Surname} received {statistics.QuantityGrades} ratings");
+        Console.WriteLine($"{employee.Name} {employee.Surname} received {statistics.Count} ratings");
         Console.WriteLine($"Rating max:  {statistics.Max}");
         Console.WriteLine($"Rating min:  {statistics.Min}");
         Console.WriteLine($"Average ratings:  {statistics.Average:N2}");

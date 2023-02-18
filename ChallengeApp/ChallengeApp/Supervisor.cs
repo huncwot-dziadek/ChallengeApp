@@ -3,17 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ChallengeApp.EmployeeBase;
 
 namespace ChallengeApp
 {
     public class Supervisor : IEmployee
     {
+        public event GradeAddedDelegate GradeAdded;
 
-        //public void EmployeeGradeAdded(object sender, EventArgs args);
-
-        //public void Info_o_ocenie(object sender, EventArgs args);
-
-        private List<float> gradesSupervisor = new List<float>();
+        private List<float> grades = new List<float>();
 
         public Supervisor(string name, string surname, string functionInCompany)
         {
@@ -32,7 +30,7 @@ namespace ChallengeApp
         {
             if (grade >= 0 && grade <= 100)
             {
-                this.gradesSupervisor.Add(grade);
+                this.grades.Add(grade);
             }
             else
             {
@@ -58,23 +56,23 @@ namespace ChallengeApp
             {
                 case 'A':
                 case 'a':
-                    this.gradesSupervisor.Add(100);
+                    this.grades.Add(100);
                     break;
                 case 'B':
                 case 'b':
-                    this.gradesSupervisor.Add(75);
+                    this.grades.Add(75);
                     break;
                 case 'C':
                 case 'c':
-                    this.gradesSupervisor.Add(50);
+                    this.grades.Add(50);
                     break;
                 case 'D':
                 case 'd':
-                    this.gradesSupervisor.Add(25);
+                    this.grades.Add(25);
                     break;
                 case 'E':
                 case 'e':
-                    this.gradesSupervisor.Add(0);
+                    this.grades.Add(0);
                     break;
 
             }
@@ -95,22 +93,34 @@ namespace ChallengeApp
         public Statistics GetStatistics()
         {
             var statistics = new Statistics();
-            statistics.Average = 0;
-            statistics.Max = float.MinValue;
-            statistics.Min = float.MaxValue;
-            statistics.QuantityGrades = 0;
 
-            foreach (var grade in this.gradesSupervisor)
+            foreach (var grade in this.grades)
             {
-                statistics.Average += grade;
-                statistics.Max = Math.Max(statistics.Max, grade);
-                statistics.Min = Math.Min(statistics.Min, grade);
+                statistics.AddGrade(grade);
             }
-
-            statistics.Average /= this.gradesSupervisor.Count;
-            statistics.QuantityGrades += this.gradesSupervisor.Count;
 
             return statistics;
         }
+
+        //public Statistics GetStatistics()
+        //{
+        //    var statistics = new Statistics();
+        //    statistics.Average = 0;
+        //    statistics.Max = float.MinValue;
+        //    statistics.Min = float.MaxValue;
+        //    statistics.QuantityGrades = 0;
+
+        //    foreach (var grade in this.gradesSupervisor)
+        //    {
+        //        statistics.Average += grade;
+        //        statistics.Max = Math.Max(statistics.Max, grade);
+        //        statistics.Min = Math.Min(statistics.Min, grade);
+        //    }
+
+        //    statistics.Average /= this.gradesSupervisor.Count;
+        //    statistics.QuantityGrades += this.gradesSupervisor.Count;
+
+        //    return statistics;
+        //}
     }
 }

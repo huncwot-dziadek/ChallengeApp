@@ -3,12 +3,10 @@
     public class EmployeeInMemory : EmployeeBase
     {
 
-        public delegate void GradeAddedDelegate(object sender, EventArgs args);
-
-        public event GradeAddedDelegate GradeAdded;
+        public override event GradeAddedDelegate GradeAdded;
 
         private List<float> grades = new List<float>();
-        public EmployeeInMemory(string name, string surname)   
+        public EmployeeInMemory(string name, string surname)
             : base(name, surname)
         {
             this.FunctionInCompany = "Worker";
@@ -57,7 +55,7 @@
                     GradeAdded(this, new EventArgs());
                 }
             }
-            
+
             else
             {
                 throw new Exception("String is not float");
@@ -95,21 +93,12 @@
         public override Statistics GetStatistics()
         {
             var statistics = new Statistics();
-            statistics.Average = 0;
-            statistics.Max = float.MinValue;
-            statistics.Min = float.MaxValue;
-            statistics.QuantityGrades = 0;
 
-            foreach (var grade in this.grades)
-            {
-                statistics.Average += grade;
-                statistics.Max = Math.Max(statistics.Max, grade);
-                statistics.Min = Math.Min(statistics.Min, grade);
+            foreach (var grade in this.grades) 
+            { 
+                statistics.AddGrade(grade);
             }
-
-            statistics.Average /= this.grades.Count;
-            statistics.QuantityGrades += this.grades.Count;
-
+            
             return statistics;
         }
 

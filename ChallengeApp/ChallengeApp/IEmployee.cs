@@ -1,21 +1,27 @@
-﻿namespace ChallengeApp
+﻿using static ChallengeApp.EmployeeBase;
+
+namespace ChallengeApp
 {
     public interface IEmployee
     {
-
         string Name { get; }
+
         string Surname { get; }
+
         string FunctionInCompany { get; }
 
-        //public delegate void GradeAddedDelegate(object sender, EventArgs args);
+        void AddGrade(float grade);
 
-        //public event GradeAddedDelegate GradeAdded;
+        void AddGrade(double grade);
 
-        public void AddGrade(float grade);
-        public void AddGrade(double grade);
-        public void AddGrade(int grade);
-        public void AddGrade(char grade);
-        public void AddGrade(string grade);
+        void AddGrade(int grade);
+
+        void AddGrade(char grade);
+
+        void AddGrade(string grade);
+
+        
+        public event GradeAddedDelegate GradeAdded;
 
         Statistics GetStatistics();
 

@@ -3,10 +3,7 @@
     public class EmployeeInFile : EmployeeBase
     {
 
-        public delegate void GradeAddedDelegate(object sender, EventArgs args);
-
-        public event GradeAddedDelegate GradeAdded;
-
+        public override event GradeAddedDelegate GradeAdded;
 
         private const string fileName = "grades.txt";
 
@@ -27,7 +24,6 @@
                 using (var writer = File.AppendText(fileName))
                 {
                     writer.WriteLine(grade);
-
                 }
                 if (GradeAdded != null)
                 {
@@ -36,7 +32,7 @@
             }
             else
             {
-                throw new Exception(message:"Grade out of range");
+                throw new Exception(message: "Grade out of range");
             }
         }
 
@@ -60,9 +56,8 @@
             }
             else
             {
-                throw new Exception(message:"String is not float");
+                throw new Exception(message: "String is not float");
             }
-
         }
 
         public override void AddGrade(char grade)
@@ -89,13 +84,12 @@
                 case 'e':
                     this.AddGrade(0);
                     break;
-
             }
         }
-
-
+                
         public override Statistics GetStatistics()
         {
+            var statistics = new Statistics();
 
             if (File.Exists(fileName))
             {
@@ -108,33 +102,13 @@
                         grades.Add(number);
                         line = reader.ReadLine();
                     }
-
                 }
-
             }
-
-            var result = this.GetStatistics(grades);
-            return result;
-        }
-
-        private Statistics GetStatistics(List<float> grades)
-        {
-            var statistics = new Statistics();
-            statistics.Average = 0;
-            statistics.Max = float.MinValue;
-            statistics.Min = float.MaxValue;
-            statistics.QuantityGrades = 0;
 
             foreach (var grade in this.grades)
             {
-                statistics.Average += grade;
-                statistics.Max = Math.Max(statistics.Max, grade);
-                statistics.Min = Math.Min(statistics.Min, grade);
+                statistics.AddGrade(grade);
             }
-
-            statistics.Average /= this.grades.Count;
-            statistics.QuantityGrades += this.grades.Count;
-
             return statistics;
         }
     }
