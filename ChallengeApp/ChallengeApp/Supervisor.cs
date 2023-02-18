@@ -9,6 +9,10 @@ namespace ChallengeApp
     public class Supervisor : IEmployee
     {
 
+        //public void EmployeeGradeAdded(object sender, EventArgs args);
+
+        //public void Info_o_ocenie(object sender, EventArgs args);
+
         private List<float> gradesSupervisor = new List<float>();
 
         public Supervisor(string name, string surname, string functionInCompany)

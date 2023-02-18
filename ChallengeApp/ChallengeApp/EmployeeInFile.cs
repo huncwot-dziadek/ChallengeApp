@@ -3,9 +3,14 @@
     public class EmployeeInFile : EmployeeBase
     {
 
+        public delegate void GradeAddedDelegate(object sender, EventArgs args);
+
+        public event GradeAddedDelegate GradeAdded;
+
+
         private const string fileName = "grades.txt";
 
-        private List<float> numbers = new List<float>();
+        private List<float> grades = new List<float>();
 
         public EmployeeInFile(string name, string surname)
             : base(name, surname)
@@ -13,53 +18,81 @@
             this.FunctionInCompany = "Worker";
         }
 
-        public override void Info_o_ocenie(object sender, EventArgs args)
-        {
-            Console.WriteLine("dodano nową ocenę");
-        }
         public override string FunctionInCompany { get; set; }
 
         public override void AddGrade(float grade)
         {
-            using (var writer = File.AppendText(fileName))
+            if (grade >= 0 && grade <= 100)
             {
-                writer.WriteLine(grade);
+                using (var writer = File.AppendText(fileName))
+                {
+                    writer.WriteLine(grade);
+
+                }
+                if (GradeAdded != null)
+                {
+                    GradeAdded(this, new EventArgs());
+                }
+            }
+            else
+            {
+                throw new Exception(message:"Grade out of range");
             }
         }
 
         public override void AddGrade(double grade)
         {
             var gradeMadeOfDouble = (float)grade;
-            using (var writer = File.AppendText(fileName))
-            {
-                writer.WriteLine(gradeMadeOfDouble);
-            }
+            this.AddGrade(gradeMadeOfDouble);
         }
 
         public override void AddGrade(int grade)
         {
             var gradeMadeOfInt = (float)grade;
-            using (var writer = File.AppendText(fileName))
-            {
-                writer.WriteLine(gradeMadeOfInt);
-            }
-        }
-
-        public override void AddGrade(char grade)
-        {
-            using (var writer = File.AppendText(fileName))
-            {
-                writer.WriteLine(grade);
-            }
+            this.AddGrade(gradeMadeOfInt);
         }
 
         public override void AddGrade(string grade)
         {
-            using (var writer = File.AppendText(fileName))
+            if (float.TryParse(grade, out float resultFloat))
             {
-                writer.WriteLine(grade);
+                this.AddGrade(resultFloat);
+            }
+            else
+            {
+                throw new Exception(message:"String is not float");
+            }
+
+        }
+
+        public override void AddGrade(char grade)
+        {
+            switch (grade)
+            {
+                case 'A':
+                case 'a':
+                    this.AddGrade(100);
+                    break;
+                case 'B':
+                case 'b':
+                    this.AddGrade(75);
+                    break;
+                case 'C':
+                case 'c':
+                    this.AddGrade(50);
+                    break;
+                case 'D':
+                case 'd':
+                    this.AddGrade(25);
+                    break;
+                case 'E':
+                case 'e':
+                    this.AddGrade(0);
+                    break;
+
             }
         }
+
 
         public override Statistics GetStatistics()
         {
@@ -72,7 +105,7 @@
                     while (line != null)
                     {
                         var number = float.Parse(line);
-                        numbers.Add(number);
+                        grades.Add(number);
                         line = reader.ReadLine();
                     }
 
@@ -80,11 +113,11 @@
 
             }
 
-            var result = this.GetStatistics(numbers);
+            var result = this.GetStatistics(grades);
             return result;
         }
 
-        private Statistics GetStatistics(List<float> numbers)
+        private Statistics GetStatistics(List<float> grades)
         {
             var statistics = new Statistics();
             statistics.Average = 0;
@@ -92,15 +125,15 @@
             statistics.Min = float.MaxValue;
             statistics.QuantityGrades = 0;
 
-            foreach (var grade in this.numbers)
+            foreach (var grade in this.grades)
             {
                 statistics.Average += grade;
                 statistics.Max = Math.Max(statistics.Max, grade);
                 statistics.Min = Math.Min(statistics.Min, grade);
             }
 
-            statistics.Average /= this.numbers.Count;
-            statistics.QuantityGrades += this.numbers.Count;
+            statistics.Average /= this.grades.Count;
+            statistics.QuantityGrades += this.grades.Count;
 
             return statistics;
         }

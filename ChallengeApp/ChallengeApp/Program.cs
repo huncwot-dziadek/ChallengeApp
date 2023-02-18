@@ -1,47 +1,107 @@
 ﻿using ChallengeApp;
 using System.Diagnostics;
 using System.Net.Http.Headers;
+using System.Runtime.CompilerServices;
 
-Console.WriteLine("Welcome to the program WHAT EMPLOYEE");
-Console.WriteLine("                       =============");
-Console.WriteLine();
-Console.WriteLine();
-Console.WriteLine("Enter employee details:");
-Console.Write("Name:                  ");
-var name = Console.ReadLine();
+namespace ChallengeApp
 
-Console.Write("Surname:               ");
-var surname = Console.ReadLine();
+; public class Program
+{
+    private static void Main(string[] args)
+    {
+        Console.WriteLine("Welcome to the program WHAT EMPLOYEE");
+        Console.WriteLine("                       =============");
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine("Enter employee details:");
+        Console.Write("Name:                  ");
+        var name = Console.ReadLine();
 
-var employee = new EmployeeInMemory(name, surname);
-//employee.GradeAdded += EmployeeGradeAdded;
+        Console.Write("Surname:               ");
+        var surname = Console.ReadLine();
 
-//void EmployeeGradeAdded(object sender, EventArgs args)
-//{
-//    Console.WriteLine("dodano nową ocenę");
-
-//    }
-
-//employee.AddGrade(1.6f);
-
-//employee.AddGrade(1.5f);
-//employee.AddGrade(17.5);
-//employee.AddGrade(100);
-//employee.AddGrade(-4);
-//employee.AddGrade(44);
+        var employee = new EmployeeInFile(name, surname);
+        employee.GradeAdded += EmployeeGradeAdded;
 
 
+        void EmployeeGradeAdded(object sender, EventArgs args)
+        {
+            Console.WriteLine($"dodano nową ocenę");
+        }
 
-//Console.WriteLine();
-//Console.WriteLine();
-//var result = employee.GetStatistics();
+        Console.WriteLine();
+        Console.WriteLine("The rating should be in the range 0-100");
 
-//Console.WriteLine();
-//Console.WriteLine();
-//Console.WriteLine($"{employee.Name} {employee.Surname} received {result.QuantityGrades} ratings");
-//Console.WriteLine($"Rating max:  {result.Max}");
-//Console.WriteLine($"Rating min:  {result.Min}");
-//Console.WriteLine($"Average ratings:  {result.Average:N2}");
+        Console.WriteLine();
+        Console.WriteLine("Start entering data or exit the program by pressing key Q:");
+
+        while (true)
+        {
+            Console.WriteLine("Give your next grade:");
+            var nextInput = Console.ReadLine();
+
+            if (nextInput == "q" || nextInput == "Q")
+            {
+                break;
+            }
+
+
+            else if (nextInput == "A" || nextInput == "a" || nextInput == "B" || nextInput == "b" || nextInput == "C" || nextInput == "c" || nextInput == "D" || nextInput == "d" || nextInput == "E" || nextInput == "e")
+            {
+                char.TryParse(nextInput, out char value);
+                employee.AddGrade(value);
+            }
+
+            try
+            {
+                float.TryParse(nextInput, out var value);
+                if (value != 0)
+                {
+                    employee.AddGrade(value);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Exception catched: {e.Message}");
+            }
+
+        }
+
+        var statistics = employee.GetStatistics();
+
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine($"{employee.Name} {employee.Surname} received {statistics.QuantityGrades} ratings");
+        Console.WriteLine($"Rating max:  {statistics.Max}");
+        Console.WriteLine($"Rating min:  {statistics.Min}");
+        Console.WriteLine($"Average ratings:  {statistics.Average:N2}");
+
+
+
+
+
+
+        //employee.AddGrade(1.6f);
+        //employee.AddGrade('B');
+        //employee.AddGrade(17.5);
+        //employee.AddGrade(100);
+        //employee.AddGrade(-4);
+        //employee.AddGrade(44);
+        //Console.WriteLine();
+        //Console.WriteLine();
+        //var result = employee.GetStatistics();
+
+        //Console.WriteLine();
+        //Console.WriteLine();
+        //Console.WriteLine($"{employee.Name} {employee.Surname} received {result.QuantityGrades} ratings");
+        //Console.WriteLine($"Rating max:  {result.Max}");
+        //Console.WriteLine($"Rating min:  {result.Min}");
+        //Console.WriteLine($"Average ratings:  {result.Average:N2}");
+
+
+    }
+}
+
 
 
 

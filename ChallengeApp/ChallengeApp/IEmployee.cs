@@ -7,9 +7,9 @@
         string Surname { get; }
         string FunctionInCompany { get; }
 
-        public void EmployeeGradeAdded(object sender, EventArgs args);
+        //public delegate void GradeAddedDelegate(object sender, EventArgs args);
 
-        public void Info_o_ocenie(object sender, EventArgs args);
+        //public event GradeAddedDelegate GradeAdded;
 
         public void AddGrade(float grade);
         public void AddGrade(double grade);

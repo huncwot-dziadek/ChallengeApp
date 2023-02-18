@@ -2,36 +2,30 @@
 {
     public class EmployeeInMemory : EmployeeBase
     {
-        
+
+        public delegate void GradeAddedDelegate(object sender, EventArgs args);
+
+        public event GradeAddedDelegate GradeAdded;
+
         private List<float> grades = new List<float>();
-        public EmployeeInMemory(string name, string surname)
+        public EmployeeInMemory(string name, string surname)   
             : base(name, surname)
         {
             this.FunctionInCompany = "Worker";
-
-            GradeAddedDelegate grrr;
-            grrr = Info_o_ocenie;
-
         }
 
         public override string FunctionInCompany { get; set; }
-
-       public override void Info_o_ocenie(object sender, EventArgs args)
-        {
-            Console.WriteLine("dodano nową ocenę");
-        }
 
         public override void AddGrade(float grade)
         {
             if (grade >= 0 && grade <= 100)
             {
                 this.grades.Add(grade);
-                
 
-                //if(EmployeeBase.GradeAdded != null)
-                //{
-                //    GradeAdded(this, new EventArgs());
-                //}
+                if (GradeAdded != null)
+                {
+                    GradeAdded(this, new EventArgs());
+                }
             }
             else
             {
@@ -53,10 +47,17 @@
 
         public override void AddGrade(string grade)
         {
+            //float.Parse(grade);
+
             if (float.TryParse(grade, out float resultFloat))
             {
                 this.AddGrade(resultFloat);
+                if (GradeAdded != null)
+                {
+                    GradeAdded(this, new EventArgs());
+                }
             }
+            
             else
             {
                 throw new Exception("String is not float");
@@ -69,23 +70,23 @@
             {
                 case 'A':
                 case 'a':
-                    this.grades.Add(100);
+                    this.AddGrade(100);
                     break;
                 case 'B':
                 case 'b':
-                    this.grades.Add(75);
+                    this.AddGrade(75);
                     break;
                 case 'C':
                 case 'c':
-                    this.grades.Add(50);
+                    this.AddGrade(50);
                     break;
                 case 'D':
                 case 'd':
-                    this.grades.Add(25);
+                    this.AddGrade(25);
                     break;
                 case 'E':
                 case 'e':
-                    this.grades.Add(0);
+                    this.AddGrade(0);
                     break;
 
             }
