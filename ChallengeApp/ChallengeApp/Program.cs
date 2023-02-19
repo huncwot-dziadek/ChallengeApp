@@ -59,6 +59,10 @@ namespace ChallengeApp
                 {
                     employee.AddGrade(value);
                 }
+                else
+                {
+                    throw new Exception(message: "Grade is not float");
+                }
             }
             catch (Exception e)
             {
